@@ -1,4 +1,4 @@
-![Capa](../Projeto%20EmpreGO/static/imgs/CAPA%20README.png)
+![Capa](/static/imgs/CAPA%20README.png)
 ### Curso Técnico de Desenvolvimento de Sistemas - Senai Itapeva
 
 # EmpreGO! - Plataforma de Vagas de emprego
