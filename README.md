@@ -25,7 +25,7 @@ Visitante:
 - Abrir uma vaga específica para visualizar detalhes (descrição, requisitos, salário, benefícios, localização, contato).
 - Enviar currículo para uma vaga específica.
 - Pesquisar Vagas por palavra chave.
-![Gif](../Projeto%20EmpreGO/static/imgs/VIdeo%20readme.gif)
+![Gif](/static/imgs/VIdeo%20readme.gif)
 
 Empresa:
 
@@ -38,7 +38,7 @@ Empresa:
 - Desabilitar/habilitar uma vaga cadastrada.
 - Deletar uma vaga cadastrada.
 - Visualizar currículos recebidos para uma vaga específica.
-![Gif](../Projeto%20EmpreGO/static/imgs/Video%20empresa.gif)
+![Gif](/static/imgs/Video%20empresa.gif)
 
 
 Administrador:
@@ -51,7 +51,7 @@ Administrador:
 - Editar dados de uma empresa cadastrada.
 - Deletar uma empresa cadastrada.
 - Desabilitar/habilitar uma empresa cadastrada.
-![Gif](../Projeto%20EmpreGO/static/imgs/Video%20ADM.gif)
+![Gif](/static/imgs/Video%20ADM.gif)
 
 ## Tecnologias Utilizadas
 - **Linguagem/Frameworks:**
