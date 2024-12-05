@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, send_from_directory
 from mysql.connector import Error
 from config import * #(config.py)
 from db_functions import * #(Funções de banco de dados)
@@ -578,22 +578,21 @@ def ver_candidatos(id_vaga):
 
 @app.route('/download/<filename>')
 def download(filename):
+    print(filename)
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=False)
 
 @app.route('/delete/<filename>')
 def delete_file(filename):
     try:
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        if not os.path.isfile(file_path):
-            return "Arquivo não encontrado", 404
         os.remove(file_path)
 
         conexao, cursor = conectar_db()
         comandoSQL = "DELETE FROM candidatura WHERE curriculo = %s"
         cursor.execute(comandoSQL, (filename,))
         conexao.commit()
-
         return redirect('/')
+
     except mysql.connector.Error as erro:
         return f"Erro de banco de Dados: {erro}"
     except Exception as erro:
