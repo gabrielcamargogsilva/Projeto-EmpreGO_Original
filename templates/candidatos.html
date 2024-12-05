@@ -9,7 +9,7 @@
             {% for curriculo in candidatura %}
             <li class="mb-3 border-bottom py-2 ">
                 {{ curriculo.nome }} - {{ curriculo.telefone }} - {{ curriculo.email }} - Mensagem de apresentação:     {{ curriculo.mensagem }}
-                <a href="/download/{{ curriculo.curriculo }}" class="btn btn-success download ">Baixar</a>
+                <a href="/download/{{ curriculo.curriculo }}" class="btn btn-success download" target="_blank">Baixar</a>
                 <a href="/delete/{{ curriculo.curriculo }}" class="btn btn-danger excluir ">Excluir</a>
             </li>
             {% else %}

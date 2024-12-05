@@ -578,7 +578,6 @@ def ver_candidatos(id_vaga):
 
 @app.route('/download/<filename>')
 def download(filename):
-    print(filename)
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=False)
 
 @app.route('/delete/<filename>')
