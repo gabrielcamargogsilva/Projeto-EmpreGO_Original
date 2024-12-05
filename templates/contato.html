@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}EmpreGO - Contato{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h3 class="text-center">Entre em Contato com a EmpreGO!</h3>
+    
+    <p class="text-center text-dark mt-4">
+        Quer saber mais sobre a EmpreGO ou precisa de ajuda? Estamos aqui para te ouvir! Entre em contato conosco através das informações abaixo ou envie-nos uma mensagem pelo formulário.
+    </p>
+    
+    <div class="row mt-5">
+        <!-- Informações de contato -->
+        <div class="col-md-6">
+            <h5>Informações de Contato</h5>
+            <p><strong>Endereço:</strong> Rua Fictícia, 123 - Centro, São Paulo, SP, Brasil</p>
+            <p><strong>Telefone:</strong> (11) 1234-5678</p>
+            <p><strong>Email:</strong> contato@emprego.com.br</p>
+        </div>
+        
+        <!-- Formulário de contato -->
+        <div class="col-md-6">
+            <h5>Envie uma Mensagem</h5>
+            <form method="post" action="/enviar-mensagem/">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Seu email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea class="form-control" id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

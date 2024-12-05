@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link para o bootstrap local -->
+    <link rel="stylesheet" href="..//static/bootstrap/css/lux.css">
+    <!-- Link para o CSS próprio-->
+    <link rel="stylesheet" href="../static/style.css">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body class="d-flex flex-column">
+    <header>
+       {% include "header.html" %}
+      </header>
+      
+    <main class="container mt-5 flex-fill">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="bg-dark text-center py-3 mt-5">
+        {% include "footer.html" %}
+    </footer>
+    <!-- Scripts do Bootstrap -->
+    <script src="../static/bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>

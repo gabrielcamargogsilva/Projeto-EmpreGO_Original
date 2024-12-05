@@ -1,0 +1,121 @@
+body {
+    min-height: 100vh;
+}
+text-primary {
+    color: red;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: #ffd700;
+}
+
+a:not(:hover) {
+    color: white;
+}
+
+.card {
+    border-radius: 2%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve no estado padrão */
+    transition: all 0.7s cubic-bezier(0, 0, 0.5, 1);
+    overflow: hidden;
+}
+
+.card:hover {
+    border-radius: 4%;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa no hover */
+    transition: all 0.7s cubic-bezier(0.25, 0.8, 0.5, 1);
+}
+
+.card:not(:hover) {
+    transition: all 0.7s cubic-bezier(0, 0, 0.5, 1);
+}
+
+img {
+    width: 90%;
+    height: 40%;
+}
+
+/* Estilo geral da navbar */
+.navbar {
+    background-color: #343a40; /* Cor de fundo do navbar */
+    padding: 1rem;
+  }
+  
+  /* Estilo do logotipo */
+  .navbar-brand img {
+    height: 40px; /* Tamanho do logotipo */
+    margin-right: 10px;
+  }
+  
+  /* Estilo dos links do menu principal */
+  .navbar-nav .nav-link {
+    color: #ffffff; /* Cor dos links */
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 5px; /* Borda arredondada */
+  }
+  
+  /* Efeito ao passar o mouse nos links do menu */
+  .navbar-nav .nav-link:hover {
+    color: #ffd700; /* Cor do texto ao passar o mouse */
+    background-color: #495057; /* Fundo dos links ao passar o mouse */
+  }
+  
+  /* Estilo do botão Login */
+  .navbar-nav .nav-link.login-btn {
+    background-color: #28a745; /* Cor do fundo do botão */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link.login-btn:hover {
+    background-color: #218838; /* Cor do fundo ao passar o mouse */
+    color: #ffffff;
+  }
+  
+  /* Estilo do botão Sair */
+  .navbar-nav .nav-link.logout-btn {
+    background-color: #dc3545; /* Cor do fundo do botão */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-left: 10px; /* Espaço entre botões */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-link.logout-btn:hover {
+    background-color: #c82333; /* Cor do fundo ao passar o mouse */
+    color: #ffffff;
+  }
+  
+.btn:hover {
+    color: #ffd700;
+}
+
+.btn:not(:hover) {
+    color: #ffffff;
+}
+
+.btn-warning:hover {
+    color: black;
+}
+
+.btn-warning:not(:hover) {
+    color: white;
+}
+
+.btn-success:hover {
+    color: black;
+}
+
+.btn-success:not(:hover) {
+    color: white;
+}
+
