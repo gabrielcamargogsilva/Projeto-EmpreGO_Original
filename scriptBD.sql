@@ -37,6 +37,42 @@ create table candidatura (
     foreign key (id_vaga) references vaga (id_vaga)
 );
 
+-- Alterações para conseguir excluir vaga com currículos 
+create table candidatura (
+    id_candidatura int primary key auto_increment,
+    nome varchar(100) not null,
+    email varchar(100) unique not null,
+    telefone char(11) not null,
+    curriculo varchar(50) not null,
+    mensagem text not null,
+    id_vaga int not null,
+    id_empresa int not null,
+    foreign key (id_vaga) references vaga (id_vaga),
+    foreign key (id_empresa) references empresa (id_empresa)
+);
+
+DELIMITER $$
+
+create trigger delete_vaga
+before delete on empresa 
+for each row
+begin
+    delete from vaga where id_empresa = OLD.id_empresa;
+end $$
+
+DELIMITER ;
+
+DELIMITER $$ 
+
+create trigger delete_candidato 
+before delete on vaga
+for each row
+begin
+    delete from candidatura where id_empresa = OLD.id_empresa;
+end $$
+
+DELIMITER ;
+
 -- Inserção de 3 empresas
 INSERT INTO empresa (nome_empresa, cnpj, telefone, email, senha, status)
 VALUES

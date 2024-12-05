@@ -498,36 +498,50 @@ def excluirvaga(id_vaga):
 #ROTA PARA SE CANDIDATAR A VAGA
 @app.route('/candidatar_vaga/<int:id_vaga>', methods=['GET', 'POST'])
 def candidatar_vaga(id_vaga):
-    if request.method == 'GET':
-        return render_template('candidatar_vaga.html', id_vaga=id_vaga)
+    try:
+        conexao, cursor = conectar_db()
+        comandoSQL = """SELECT * FROM vaga WHERE id_vaga = %s"""
+        cursor.execute(comandoSQL, (id_vaga,))
+        vaga = cursor.fetchone()
 
-    if request.method == 'POST':
-        nome = request.form['nome']
-        email = request.form['email']
-        telefone = limpar_input(request.form['telefone'])
-        file = request.files['curriculo']
-        mensagem = request.form['mensagem']
+        if not vaga:
+            return "Vaga não encontrada!", 404 # retorna um erro 404 not found
 
-        if not email or not nome or not file or not telefone:
-            return render_template('candidatar_vaga.html', msg_erro="Os campos obrigatórios precisam estar preenchidos!")
+        if request.method == 'GET':
+            return render_template('candidatar_vaga.html', id_vaga=id_vaga, vaga=vaga)
 
-        try:
-            nome_arquivo = f"{id_vaga}_{file.filename}"
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo))
-            conexao, cursor = conectar_db()
-            comandoSQL = '''INSERT INTO candidatura (nome, email, telefone, curriculo, mensagem, id_vaga) 
-                            VALUES (%s, %s, %s, %s, %s, %s)'''
-            cursor.execute(comandoSQL, (nome, email, telefone, nome_arquivo, mensagem, id_vaga))
-            conexao.commit()
+        if request.method == 'POST':
+            nome = request.form['nome']
+            email = request.form['email']
+            telefone = limpar_input(request.form['telefone'])
+            file = request.files['curriculo']
+            mensagem = request.form['mensagem']
 
-            return render_template('confirmacao_candidatura.html')
+            if not email or not nome or not file or not telefone:
+                return render_template('candidatar_vaga.html', msg_erro="Os campos obrigatórios precisam estar preenchidos!", vaga=vaga), 400 # erro 400 bad request
 
-        except Error as erro:
-            return f"ERRO! Erro de Banco de Dados: {erro}"
-        except Exception as erro:
-            return f"ERRO! Outros erros: {erro}"
-        finally:
-            encerrar_db(cursor, conexao)
+            try:
+                nome_arquivo = f"{id_vaga}_{file.filename}"
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], nome_arquivo))
+                comandoSQL = '''INSERT INTO candidatura (nome, email, telefone, curriculo, mensagem, id_vaga, id_empresa) 
+                                VALUES (%s, %s, %s, %s, %s, %s, %s)'''
+                cursor.execute(comandoSQL, (nome, email, telefone, nome_arquivo, mensagem, id_vaga, vaga['id_empresa']))
+                conexao.commit()
+                return render_template('confirmacao_candidatura.html')
+
+            except mysql.connector.Error as erro:
+                return f"ERRO! Erro de Banco de Dados: {erro}", 500 # erro 500 internal server error
+            except IOError as erro:
+                return f"ERRO! Erro ao salvar o currículo: {erro}", 500
+            except Exception as erro:
+                return f"ERRO! Outros erros: {erro}", 500
+
+    except mysql.connector.Error as erro:
+        return f"ERRO! Erro de conexão com o banco de dados: {erro}", 500
+    except Exception as erro:
+        return f"ERRO! Erro inesperado: {erro}", 500
+    finally:
+        encerrar_db(cursor, conexao)
 
 #ROTA PARA PROCURAR VAGAS
 @app.route('/procurar_vagas')
